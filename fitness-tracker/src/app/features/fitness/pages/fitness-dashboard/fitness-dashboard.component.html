@@ -1,0 +1,33 @@
+<main class="dashboard">
+  <header class="hero">
+    <div><p class="eyebrow">PULSETRACK · FITNESS KLUB</p><h1>Prehľad členov</h1><p>Spravuj profily a sleduj tréningy na jednom mieste.</p></div>
+    <a class="primary-link" routerLink="/pouzivatel/novy">+ Pridať člena</a>
+  </header>
+
+  <section class="panel">
+    <div class="section-heading"><div><p class="eyebrow">ČLENSKÁ ZÓNA</p><h2>Všetci členovia</h2></div><span class="count">{{ pouzivatelia.length }} členovia</span></div>
+    <div class="member-list">
+      @for (pouzivatel of pouzivatelia; track pouzivatel.osobneCislo) {
+        <a class="member-card" [routerLink]="['/pouzivatel', pouzivatel.osobneCislo]">
+          <span class="avatar">{{ pouzivatel.meno.charAt(0) }}</span>
+          <span class="member-info"><strong>{{ pouzivatel.meno }}</strong><small>{{ pouzivatel.osobneCislo }} · {{ pouzivatel.telCislo }}</small></span>
+          <span class="arrow">→</span>
+        </a>
+      } @empty { <p>Zatiaľ tu nie sú žiadni členovia.</p> }
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="section-heading"><div><p class="eyebrow">PLÁNOVANIE</p><h2>Tréningy podľa dátumu</h2></div>
+      <label class="date-label">Dátum <input type="date" [(ngModel)]="vybranyDatum" /></label>
+    </div>
+    @if (naplanovaniPouzivatelia.length) {
+      <div class="table-wrap"><table>
+        <thead><tr><th>Meno</th><th>Osobné číslo</th><th>Typ tréningu</th><th>Telefón</th><th></th></tr></thead>
+        <tbody>@for (pouzivatel of naplanovaniPouzivatelia; track pouzivatel.osobneCislo) {
+          <tr><td><strong>{{ pouzivatel.meno }}</strong></td><td>{{ pouzivatel.osobneCislo }}</td><td>{{ pouzivatel.fitnessKarta[0]?.typTreningu ?? 'Neuvedené' }}</td><td>{{ pouzivatel.telCislo }}</td><td><a [routerLink]="['/pouzivatel', pouzivatel.osobneCislo]">Detail →</a></td></tr>
+        }</tbody>
+      </table></div>
+    } @else { <p class="empty">Na tento dátum nie je naplánovaný žiadny tréning.</p> }
+  </section>
+</main>

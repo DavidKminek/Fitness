@@ -1,0 +1,17 @@
+<main class="page">
+  <a routerLink="/">← Späť na prehľad</a>
+  <section class="form-card">
+    <p class="eyebrow">SPRÁVA ČLENOV</p>
+    <h1>{{ nadpis }}</h1>
+    <form (ngSubmit)="uloz()">
+      <label>Meno a priezvisko<input name="meno" [(ngModel)]="pouzivatel.meno" required /></label>
+      <label>Osobné číslo<input name="osobneCislo" [(ngModel)]="pouzivatel.osobneCislo" [readonly]="uprava" required /></label>
+      <label>Dátum narodenia<input name="datumNarodenia" type="date" [(ngModel)]="pouzivatel.datumNarodenia" /></label>
+      <label>Pohlavie<input name="pohlavie" [(ngModel)]="pouzivatel.pohlavie" /></label>
+      <label>Telefón<input name="telCislo" type="tel" [(ngModel)]="pouzivatel.telCislo" required /></label>
+      <label>Partner / poisťovňa<input name="partner" [(ngModel)]="pouzivatel.partner" /></label>
+      @if (chyba) { <p class="error" role="alert">{{ chyba }}</p> }
+      <button type="submit">{{ uprava ? 'Uložiť zmeny' : 'Pridať používateľa' }}</button>
+    </form>
+  </section>
+</main>

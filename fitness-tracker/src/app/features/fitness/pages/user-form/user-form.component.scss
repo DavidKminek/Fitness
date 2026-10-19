@@ -1,0 +1,11 @@
+.page { max-width: 760px; margin: 40px auto; padding: 0 24px; color: #17211c; }
+a { color: #177245; }
+.form-card { margin-top: 30px; padding: clamp(22px, 5vw, 42px); border: 1px solid #e1e9e3; border-radius: 18px; background: #fff; }
+.eyebrow { color: #177245; font-size: .75rem; font-weight: 700; letter-spacing: .14em; }
+h1 { margin-top: 4px; }
+form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+label { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; }
+input { box-sizing: border-box; width: 100%; padding: 12px; border: 1px solid #cdd8d0; border-radius: 9px; font: inherit; }
+button { grid-column: 1 / -1; padding: 13px; border: 0; border-radius: 10px; background: #177245; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+.error { grid-column: 1 / -1; margin: 0; color: #b42318; }
+@media (max-width: 560px) { form { grid-template-columns: 1fr; } }

@@ -1,0 +1,28 @@
+<main class="page">
+  <a routerLink="/">← Späť na prehľad</a>
+  @if (pouzivatel(); as user) {
+    <header>
+      <div><p class="eyebrow">PROFIL ČLENA</p><h1>{{ user.meno }}</h1><p>{{ user.osobneCislo }}</p></div>
+      <a class="button" [routerLink]="['/pouzivatel', user.osobneCislo, 'upravit']">Upraviť profil</a>
+    </header>
+    <section class="card">
+      <h2>Osobné údaje</h2>
+      <dl>
+        <div><dt>Dátum narodenia</dt><dd>{{ user.datumNarodenia }}</dd></div>
+        <div><dt>Pohlavie</dt><dd>{{ user.pohlavie }}</dd></div>
+        <div><dt>Telefón</dt><dd>{{ user.telCislo }}</dd></div>
+        <div><dt>Partner / poisťovňa</dt><dd>{{ user.partner || 'Neuvedené' }}</dd></div>
+      </dl>
+    </section>
+    <section class="card">
+      <h2>Tréningy</h2>
+      @if (user.fitnessKarta.length) {
+        @for (trening of user.fitnessKarta; track trening.datumTreningu) {
+          <article class="workout"><div><strong>{{ trening.popisTreningu }}</strong><p>{{ trening.typTreningu }} · {{ trening.klasifikacia }}</p></div><time>{{ trening.datumTreningu }}</time></article>
+        }
+      } @else { <p>Zatiaľ nemá zaznamenaný tréning.</p> }
+    </section>
+  } @else {
+    <section class="card"><h1>Používateľ sa nenašiel</h1><p>Tento profil už neexistuje alebo je adresa nesprávna.</p></section>
+  }
+</main>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { User, WorkoutRecord } from './models';
+import { User, WorkoutRecord } from '../models/fitness.models';
 
 @Injectable({ providedIn: 'root' })
 export class FitnessService {
@@ -45,6 +45,21 @@ export class FitnessService {
 
   dajZoznamPouzivatelov(): User[] {
     return this.pouzivatelia;
+  }
+
+  najdiPouzivatela(osobneCislo: string): User | undefined {
+    return this.pouzivatelia.find((pouzivatel) => pouzivatel.osobneCislo === osobneCislo);
+  }
+
+  pridajPouzivatela(pouzivatel: User): void {
+    this.pouzivatelia.push(pouzivatel);
+  }
+
+  upravPouzivatela(osobneCislo: string, upravenyPouzivatel: User): boolean {
+    const index = this.pouzivatelia.findIndex((pouzivatel) => pouzivatel.osobneCislo === osobneCislo);
+    if (index < 0) return false;
+    this.pouzivatelia[index] = upravenyPouzivatel;
+    return true;
   }
 
   dajNaplanovanychPouzivatelov(datum: Date | string): User[] {
