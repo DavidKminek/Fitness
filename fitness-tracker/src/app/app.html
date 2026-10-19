@@ -1,0 +1,103 @@
+<header>
+  <h1>Fitness Tracker</h1>
+  <p>Prehľad používateľov a ich tréningov</p>
+</header>
+
+<hr />
+
+<main>
+  <section>
+    <h2>Plánované tréningy</h2>
+    <label>
+      Dátum:
+      <input type="date" [(ngModel)]="vybranyDatum" />
+    </label>
+
+    @if (naplanovaniPouzivatelia.length > 0) {
+      <table border="1" cellpadding="8">
+        <thead>
+          <tr>
+            <th>Meno</th>
+            <th>Číslo používateľa</th>
+            <th>Typ tréningu</th>
+            <th>Telefón</th>
+            <th>Akcia</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pouzivatel of naplanovaniPouzivatelia; track pouzivatel.osobneCislo) {
+            <tr>
+              <td>{{ pouzivatel.meno }}</td>
+              <td>{{ pouzivatel.osobneCislo }}</td>
+              <td>{{ pouzivatel.fitnessKarta[0]?.typTreningu ?? 'Neuvedené' }}</td>
+              <td>{{ pouzivatel.telCislo }}</td>
+              <td>
+                <button type="button" (click)="vyberPouzivatela(pouzivatel)">Zobraziť kartu</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p>Na tento dátum nie je naplánovaný žiadny tréning.</p>
+    }
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>Vybraný používateľ</h2>
+    <dl>
+      <dt>Meno</dt>
+      <dd>{{ vybranyPouzivatel.meno }}</dd>
+      <dt>Osobné číslo</dt>
+      <dd>{{ vybranyPouzivatel.osobneCislo }}</dd>
+      <dt>Dátum narodenia</dt>
+      <dd>{{ vybranyPouzivatel.datumNarodenia }}</dd>
+      <dt>Pohlavie</dt>
+      <dd>{{ vybranyPouzivatel.pohlavie }}</dd>
+      <dt>Telefón</dt>
+      <dd>{{ vybranyPouzivatel.telCislo }}</dd>
+      <dt>Partner / poisťovňa</dt>
+      <dd>{{ vybranyPouzivatel.partner ?? 'Neuvedené' }}</dd>
+    </dl>
+
+    <button type="button" (click)="posliPripomienku()">Poslať SMS pripomienku</button>
+  </section>
+
+  <hr />
+
+  <section>
+    <h2>Fitness karta</h2>
+    @if (treningyVybranehoPouzivatela.length > 0) {
+      <table border="1" cellpadding="8">
+        <thead>
+          <tr>
+            <th>Dátum</th>
+            <th>Popis</th>
+            <th>Typ</th>
+            <th>Intenzita</th>
+            <th>Doplnky</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (trening of treningyVybranehoPouzivatela; track trening.datumTreningu) {
+            <tr>
+              <td>{{ trening.datumTreningu }}</td>
+              <td>{{ trening.popisTreningu }}</td>
+              <td>{{ trening.typTreningu }}</td>
+              <td>{{ trening.klasifikacia }}</td>
+              <td>{{ trening.doplnky.join(', ') }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p>História tréningov je prázdna.</p>
+    }
+  </section>
+
+  @if (oznam) {
+    <p><strong>{{ oznam }}</strong></p>
+  }
+</main>
