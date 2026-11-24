@@ -21,7 +21,7 @@ export class FitnessService {
           doplnky: ['Iontový nápoj']
         }
       ],
-      zoznamPlanovanychTreningov: ['2026-09-24', '2026-09-28']
+      zoznamPlanovanychTreningov: ['2026-10-20', '2026-10-21', '2026-10-22', '2026-10-23']
     },
     {
       meno: 'Martin Kováč',
@@ -39,7 +39,7 @@ export class FitnessService {
           doplnky: ['Proteín', 'Kreatín']
         }
       ],
-      zoznamPlanovanychTreningov: ['2026-09-24']
+      zoznamPlanovanychTreningov: ['2026-10-20', '2026-10-22', '2026-10-21']
     }
   ];
 

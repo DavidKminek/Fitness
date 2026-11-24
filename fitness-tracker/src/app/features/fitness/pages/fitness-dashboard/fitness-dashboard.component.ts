@@ -15,7 +15,7 @@ export class FitnessDashboardComponent {
   protected get pouzivatelia(): User[] {
     return this.fitnessService.dajZoznamPouzivatelov();
   }
-  protected vybranyDatum = '2026-09-24';
+  protected vybranyDatum = '2026-10-20';
 
   protected get naplanovaniPouzivatelia(): User[] {
     return this.fitnessService.dajNaplanovanychPouzivatelov(this.vybranyDatum);
