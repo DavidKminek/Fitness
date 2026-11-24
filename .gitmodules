@@ -1,0 +1,3 @@
+[submodule "fitness-tracker/Fitness-module"]
+	path = fitness-tracker/Fitness-module
+	url = https://github.com/DavidKminek/Fitness-module.git
